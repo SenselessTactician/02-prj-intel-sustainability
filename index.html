@@ -35,6 +35,41 @@
     .milestone:hover .milestone-overlay {
       display: block;          /* Show the overlay */
     }
+
+    /* Timeline section styles */
+    .timeline {
+      position: relative;      /* Position relative for absolute positioning of arrows */
+      padding: 20px 0;        /* Vertical padding for the section */
+    }
+
+    .timeline-container {
+      display: flex;          /* Use flexbox for horizontal layout */
+      overflow-x: auto;      /* Enable horizontal scrolling */
+      scroll-behavior: smooth; /* Smooth scrolling when using the arrow buttons */
+    }
+
+    /* Arrow button styles */
+    .arrow-btn {
+      position: absolute;      /* Position absolutely within the timeline section */
+      top: 50%;                /* Center vertically */
+      transform: translateY(-50%); /* Adjust for button height */
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+      border: none;            /* No border for the buttons */
+      border-radius: 50%;      /* Circular buttons */
+      width: 40px;             /* Fixed width for the buttons */
+      height: 40px;            /* Fixed height for the buttons */
+      cursor: pointer;         /* Pointer cursor on hover */
+      font-size: 18px;         /* Font size for the arrow characters */
+      z-index: 10;             /* Ensure buttons are above other content */
+    }
+
+    .left-arrow {
+      left: 10px;             /* Position on the left */
+    }
+
+    .right-arrow {
+      right: 10px;            /* Position on the right */
+    }
   </style>
 </head>
 <body>
@@ -50,8 +85,10 @@
 
   <!-- Timeline Section -->
   <section class="timeline">
+    <!-- Left Arrow Button -->
+    <button class="arrow-btn left-arrow" id="leftArrow">&#8592;</button>
     <!-- Timeline Milestone Cards -->
-    <div class="timeline-container">
+    <div class="timeline-container" id="timelineContainer">
       <!-- Card 1: 1968 -->
       <div class="milestone">
         <h2>1968</h2>
@@ -179,12 +216,35 @@
         </div>
       </div>
     </div>
+    <!-- Right Arrow Button -->
+    <button class="arrow-btn right-arrow" id="rightArrow">&#8594;</button>
   </section>
 
   <!-- Place this just before the closing </body> tag -->
   <p style="text-align: center;">
     Scroll to view timeline | Hover over cards to learn more!
   </p>
+
+  <!-- Add this script at the end of the body -->
+  <script>
+    // Get the timeline container and arrow buttons
+    var timeline = document.getElementById('timelineContainer');
+    var leftArrow = document.getElementById('leftArrow');
+    var rightArrow = document.getElementById('rightArrow');
+
+    // How much to scroll each time (in pixels)
+    var scrollAmount = 250;
+
+    // When left arrow is clicked, scroll left
+    leftArrow.onclick = function() {
+      timeline.scrollLeft -= scrollAmount;
+    };
+
+    // When right arrow is clicked, scroll right
+    rightArrow.onclick = function() {
+      timeline.scrollLeft += scrollAmount;
+    };
+  </script>
 
 </body>
 </html>

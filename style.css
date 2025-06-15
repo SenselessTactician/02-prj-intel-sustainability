@@ -32,6 +32,7 @@
 .timeline {
   background: #f4f8fb; /* Light background for contrast */
   padding: 40px 10px;
+  position: relative; /* Needed for absolute positioning of arrows */
 }
 
 /* Container for all milestone cards */
@@ -123,6 +124,33 @@
   border-radius: 6px;   /* Rounded corners for the image */
 }
 
+/* Style for the left and right arrow buttons */
+.arrow-btn {
+  position: absolute;           /* Place arrows over the timeline */
+  top: 50%;                     /* Center vertically */
+  transform: translateY(-50%);  /* Adjust for perfect centering */
+  background: #fff;             /* White background */
+  border: 1px solid #0071c5;    /* Intel blue border */
+  color: #0071c5;               /* Intel blue arrow */
+  border-radius: 50%;           /* Make buttons round */
+  width: 36px;                  /* Button size */
+  height: 36px;
+  font-size: 1.5em;             /* Bigger arrow */
+  cursor: pointer;              /* Pointer cursor on hover */
+  z-index: 2;                   /* Make sure arrows are above cards */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Soft shadow */
+}
+
+/* Position the left arrow on the left side */
+.left-arrow {
+  left: 10px;
+}
+
+/* Position the right arrow on the right side */
+.right-arrow {
+  right: 10px;
+}
+
 /* Responsive: Stack timeline vertically on small screens */
 @media (max-width: 600px) {
   .timeline-container {
@@ -136,5 +164,9 @@
     min-width: unset;
     max-width: unset;
     margin: 16px auto; /* Center cards */
+  }
+  /* On small screens, hide the arrows (optional for simplicity) */
+  .arrow-btn {
+    display: none;
   }
 }
