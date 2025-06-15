@@ -39,6 +39,12 @@ body {
   opacity: 0.95;
 }
 
+/* Center the hero headline and subheading */
+.hero-headline,
+.hero-subheading {
+  text-align: center; /* This centers the text */
+}
+
 /* Timeline section */
 .timeline {
   background: #f4f8fb;
@@ -118,21 +124,24 @@ body {
 
 /* Overlay for milestone description */
 .milestone-overlay {
-  display: none;
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 113, 197, 0.92);
-  color: #fff;
-  padding: 18px 10px 10px 10px;
-  border-radius: 16px;
-  text-align: center;
-  font-size: 1em;
-  z-index: 1;
+  display: none;                /* Hide the overlay by default */
+  position: absolute;           /* Position it over the card */
+  top: 0;                       /* Start at the top edge of the card */
+  left: 0;                      /* Start at the left edge of the card */
+  width: 100%;                  /* Make overlay as wide as the card */
+  height: 100%;                 /* Make overlay as tall as the card */
+  background: rgba(0, 113, 197, 0.92); /* Intel blue with some transparency */
+  color: #fff;                  /* White text for contrast */
+  border-radius: 16px;          /* Match the card's rounded corners */
+  text-align: center;           /* Center the text inside the overlay */
+  padding: 18px 10px 10px 10px; /* Add some space inside the overlay */
+  box-sizing: border-box;       /* Include padding in the width and height */
+  z-index: 1;                   /* Make sure overlay is above the card content */
 }
 
-/* Show overlay on hover */
+/* Show the overlay when hovering over the card */
 .milestone:hover .milestone-overlay {
-  display: block;
+  display: block;               /* Show the overlay on hover */
 }
 
 /* Arrow button styles */
