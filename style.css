@@ -79,6 +79,14 @@
   display: block;
 }
 
+/* Style for images inside milestone cards */
+.milestone-img {
+  width: 100%;           /* Make image fill the card width */
+  height: auto;          /* Keep image aspect ratio */
+  border-radius: 6px;    /* Slightly rounded corners */
+  margin-bottom: 10px;   /* Space below the image */
+}
+
 /* Responsive: Stack timeline vertically on small screens */
 @media (max-width: 700px) {
   .timeline-container {
