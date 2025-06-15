@@ -36,9 +36,10 @@
 
 /* Timeline container uses Flexbox for horizontal scrolling */
 .timeline-container {
-  display: flex;
-  gap: 20px; /* Space between cards */
-  overflow-x: auto; /* Allows horizontal scroll on large screens */
+  display: flex;                /* Arrange cards in a row on large screens */
+  flex-wrap: nowrap;            /* Prevent wrapping on large screens */
+  gap: 20px;                    /* Space between cards */
+  overflow-x: auto;             /* Allow horizontal scrolling if needed */
   padding-bottom: 20px;
 }
 
@@ -49,11 +50,14 @@
   border-radius: 10px;
   min-width: 250px;
   max-width: 300px;
+  width: 90%;                   /* Responsive width */
   padding: 20px;
   font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;       /* Include padding and border in width */
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   position: relative;
   transition: box-shadow 0.3s;
+  margin: 0 auto;               /* Center cards on small screens */
 }
 
 /* Headline inside milestone */
@@ -80,22 +84,23 @@
 }
 
 /* Style for images inside milestone cards */
-.milestone-img {
-  width: 100%;           /* Make image fill the card width */
-  height: auto;          /* Keep image aspect ratio */
-  border-radius: 6px;    /* Slightly rounded corners */
-  margin-bottom: 10px;   /* Space below the image */
+.milestone img {
+  width: 80%;           /* Image takes up 80% of the card's width */
+  height: auto;         /* Keep the image's aspect ratio */
+  display: block;       /* Remove extra space below the image */
+  margin: 0 auto 10px;  /* Center the image and add space below */
+  border-radius: 6px;   /* Rounded corners for the image */
 }
 
 /* Responsive: Stack timeline vertically on small screens */
 @media (max-width: 700px) {
   .timeline-container {
-    flex-direction: column;
-    align-items: center;
-    overflow-x: visible;
+    flex-direction: column;     /* Stack cards vertically */
+    align-items: center;        /* Center cards */
+    overflow-x: visible;        /* No horizontal scroll */
   }
   .milestone {
-    width: 90%;
-    max-width: 400px;
+    width: 100%;                /* Full width on small screens */
+    max-width: 400px;           /* Limit max width */
   }
 }
