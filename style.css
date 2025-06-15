@@ -34,32 +34,31 @@
   padding: 40px 10px;
 }
 
-/* Timeline container uses Flexbox for horizontal scrolling */
+/* Container for all milestone cards */
 .timeline-container {
-  display: flex;                /* Arrange cards in a row on large screens */
-  flex-wrap: nowrap;            /* Prevent wrapping on large screens */
-  gap: 20px;                    /* Space between cards */
-  overflow-x: auto;             /* Allow horizontal scrolling if needed */
-  padding-bottom: 16px;         /* Add space below cards */
-  scroll-behavior: smooth;      /* Smooth scrolling effect */
-  scroll-snap-type: x mandatory; /* Enable horizontal snap */
+  /* On large screens, show cards in a row and allow horizontal scroll */
+  display: flex; /* Arrange cards in a row */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  scroll-snap-type: x mandatory; /* Snap to cards when scrolling */
+  padding-bottom: 16px; /* Space below cards */
 }
 
-/* Style for each milestone card */
+/* Each milestone card */
 .milestone {
-  position: relative; /* Needed for overlay positioning */
-  width: 220px;
+  scroll-snap-align: start; /* Snap this card to the start */
+  min-width: 220px; /* Minimum width for each card */
+  max-width: 250px; /* Maximum width for each card */
   margin: 16px;
   padding: 12px;
   border: 1px solid #cccccc;
   border-radius: 8px;
   background: #f0f0f0;
-  overflow: hidden; /* Hides anything outside the card */
-  display: inline-block; /* Allows cards to sit side by side */
+  overflow: hidden;
+  display: inline-block; /* Cards sit side by side */
   vertical-align: top;
-  /* Add a smooth transition for transform and box-shadow */
-  transition: transform 0.3s, box-shadow 0.3s;
-  scroll-snap-align: start;    /* Snap this card to the start when scrolling */
+  position: relative; /* Needed for overlay */
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
 }
 
 /* Headline inside milestone */
@@ -76,35 +75,34 @@
   font-size: 0.95em;
 }
 
-/* Hide the overlay by default */
+/* Overlay for milestone description (hidden by default) */
 .milestone-overlay {
-  position: absolute; /* Places overlay on top of the card */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.7); /* Semi-transparent black */
-  color: #fff; /* White text */
-  display: flex; /* Centers the text */
+  background: rgba(0,123,255,0.15); /* Light blue overlay */
+  color: #fff;
+  display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s; /* Smooth fade-in */
+  transition: opacity 0.3s;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
 }
 
-/* Show the overlay and add effects when hovering over the card */
+/* Show overlay and add effects on hover */
 .milestone:hover {
-  /* Make the card slightly bigger */
-  transform: scale(1.05);
-  /* Add a shadow to make the card stand out */
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: scale(1.05); /* Make card bigger */
+  box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3); /* Light blue shadow */
+  background: #0071c5; /* Intel blue */
 }
 
 .milestone:hover .milestone-overlay {
-  opacity: 1; /* Overlay becomes visible */
+  opacity: 1; /* Show overlay */
 }
 
 /* Show details on hover */
@@ -126,14 +124,17 @@
 }
 
 /* Responsive: Stack timeline vertically on small screens */
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   .timeline-container {
-    flex-direction: column;     /* Stack cards vertically */
-    align-items: center;        /* Center cards */
-    overflow-x: visible;        /* No horizontal scroll */
+    display: block; /* Stack cards vertically */
+    overflow-x: visible; /* No horizontal scroll */
+    scroll-snap-type: none; /* No snap */
   }
   .milestone {
-    width: 100%;                /* Full width on small screens */
-    max-width: 400px;           /* Limit max width */
+    display: block; /* Full width */
+    width: 90%;
+    min-width: unset;
+    max-width: unset;
+    margin: 16px auto; /* Center cards */
   }
 }
