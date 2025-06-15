@@ -40,7 +40,9 @@
   flex-wrap: nowrap;            /* Prevent wrapping on large screens */
   gap: 20px;                    /* Space between cards */
   overflow-x: auto;             /* Allow horizontal scrolling if needed */
-  padding-bottom: 20px;
+  padding-bottom: 16px;         /* Add space below cards */
+  scroll-behavior: smooth;      /* Smooth scrolling effect */
+  scroll-snap-type: x mandatory; /* Enable horizontal snap */
 }
 
 /* Style for each milestone card */
@@ -57,6 +59,7 @@
   vertical-align: top;
   /* Add a smooth transition for transform and box-shadow */
   transition: transform 0.3s, box-shadow 0.3s;
+  scroll-snap-align: start;    /* Snap this card to the start when scrolling */
 }
 
 /* Headline inside milestone */
