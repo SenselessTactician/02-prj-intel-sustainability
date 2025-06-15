@@ -1,6 +1,6 @@
 /* Use a clean, modern sans-serif font for the whole page */
 body {
-  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f4f8fb; /* Light background */
   margin: 0;
   padding: 0;
@@ -29,6 +29,7 @@ body {
   margin: 10px 0 8px 0;
   font-weight: 700;
   letter-spacing: 1px;
+  text-align: center; /* Center the headline */
 }
 
 /* Subheading styling */
@@ -37,12 +38,7 @@ body {
   margin-bottom: 0;
   font-weight: 400;
   opacity: 0.95;
-}
-
-/* Center the hero headline and subheading */
-.hero-headline,
-.hero-subheading {
-  text-align: center; /* This centers the text */
+  text-align: center; /* Center the subheading */
 }
 
 /* Timeline section */
@@ -52,54 +48,53 @@ body {
   position: relative; /* Needed for arrow positioning */
 }
 
-/* Timeline container styles */
+/* Timeline container: horizontal scroll on large screens */
 .timeline-container {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 16px;
-  gap: 24px; /* Space between cards */
-  margin: 0 60px; /* Space for arrows */
+  display: flex;            /* Arrange cards in a row */
+  overflow-x: auto;         /* Enable horizontal scrolling */
+  gap: 20px;                /* Space between cards */
+  padding-bottom: 16px;     /* Space below cards */
+  scroll-behavior: smooth;  /* Smooth scrolling effect */
 }
 
-/* Timeline milestone card styles */
+/* Each milestone card */
 .milestone {
-  min-width: 220px;
-  max-width: 250px;
+  min-width: 220px;         /* Minimum width for each card */
+  max-width: 250px;         /* Maximum width for each card */
+  flex: 0 0 auto;           /* Prevent cards from stretching or shrinking */
+  margin: 0;                /* Remove default margin */
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 113, 197, 0.08);
   border: 1px solid #e0e0e0;
-  margin: 0;
   padding: 16px 12px 18px 12px;
   display: inline-block;
   position: relative;
-  transition: box-shadow 0.3s, transform 0.3s;
+  transition: box-shadow 0.3s, transform 0.3s, background 0.3s, color 0.3s;
   text-align: center;
 }
 
-/* Card hover effect */
+/* Card hover effect: Intel blue background and white text */
 .milestone:hover {
   background: #0071c5;   /* Intel blue */
   color: #fff;           /* White text for contrast */
-  /* Optional: add a little shadow and scale for effect */
   box-shadow: 0 8px 24px rgba(0, 113, 197, 0.18);
   transform: scale(1.04);
   border-color: #0071c5;
 }
 
-/* Make sure headings and text inside the card also turn white on hover */
+/* Make sure headings inside the card also turn white on hover */
 .milestone:hover h2,
 .milestone:hover h3 {
   color: #fff;
 }
 
-/* Year headline */
+/* Underline the dates (h2) on milestone cards */
 .milestone h2 {
-  color: #0071c5;        /* Intel blue color for the date */
-  margin: 0 0 4px 0;     /* Space below the date */
-  font-size: 1.3em;      /* Make the date a bit larger */
-  font-weight: 700;      /* Make the date bold */
+  color: #0071c5;
+  margin: 0 0 4px 0;
+  font-size: 1.3em;
+  font-weight: 700;
   text-decoration: underline; /* Underline the date */
 }
 
@@ -111,18 +106,18 @@ body {
   color: #222;
 }
 
-/* Milestone image styling */
+/* Style for images inside milestone cards */
 .milestone img {
-  width: 80%;
-  height: 120px;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto 10px;
-  border-radius: 8px;
+  width: 80%;           /* Image takes up 80% of the card's width */
+  height: 120px;        /* Fixed height for all images */
+  object-fit: cover;    /* Crop images to fill the area without stretching */
+  display: block;       /* Remove extra space below the image */
+  margin: 0 auto 10px;  /* Center the image and add space below */
+  border-radius: 8px;   /* Rounded corners for the image */
   box-shadow: 0 1px 6px rgba(0,0,0,0.07);
 }
 
-/* Overlay for milestone description */
+/* Overlay for milestone description (hidden by default) */
 .milestone-overlay {
   display: none;                /* Hide the overlay by default */
   position: absolute;           /* Position it over the card */
@@ -179,22 +174,22 @@ body {
   right: 18px;
 }
 
-/* Responsive: Stack timeline vertically on small screens and hide arrows */
+/* On small screens, use flexbox to stack milestone cards vertically and make them wider */
 @media (max-width: 700px) {
   .timeline-container {
-    display: block;
-    overflow-x: visible;
-    margin: 0;
-    gap: 0;
+    display: flex;           /* Use flexbox for layout */
+    flex-direction: column;  /* Stack cards in a column */
+    align-items: center;     /* Center cards horizontally */
+    overflow-x: visible;     /* No horizontal scroll */
+    gap: 0;                  /* No gap needed for vertical layout */
   }
   .milestone {
-    display: block;
-    width: 90%;
-    min-width: unset;
-    max-width: unset;
-    margin: 18px auto;
-  }
-  .arrow-btn {
-    display: none;
+    width: 98%;              /* Make each card almost as wide as the screen */
+    min-width: unset;        /* Remove minimum width */
+    max-width: unset;        /* Remove maximum width */
+    margin: 18px 0;          /* Space between cards vertically */
+    display: block;          /* Make sure cards are block elements */
   }
 }
+
+/* ...end of file... */
