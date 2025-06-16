@@ -41,6 +41,14 @@ body {
   text-align: center; /* Center the subheading */
 }
 
+/* Center the headline and subheading */
+.hero-headline,
+.hero-subheading {
+  text-align: center; /* This centers the text */
+  margin-left: auto;  /* These two lines make sure the text lines up */
+  margin-right: auto;
+}
+
 /* Timeline section */
 .timeline {
   background: #f4f8fb;
@@ -185,16 +193,26 @@ body {
 }
 
 /* On small screens, stack milestone cards vertically and make them wider */
-@media (max-width: 700px) {
+@media (max-width: 500px) {
   .timeline-container {
-    display: block;         /* Stack cards vertically */
-    overflow-x: visible;    /* No horizontal scroll */
-    gap: 0;                 /* Remove gap between cards */
-    max-width: 100%;        /* Full width on small screens */
-    min-width: unset;       /* Remove min-width on small screens */
+    flex-direction: column;  /* Stack cards vertically */
+    align-items: center;     /* Center cards horizontally */
+    width: 100%;             /* Full width on small screens */
+    min-width: unset;        /* Remove minimum width */
+    max-width: unset;        /* Remove maximum width */
+    overflow-x: visible;     /* No horizontal scroll */
+    padding: 0;              /* Remove padding for better fit */
+    padding-bottom: 0;       /* Remove bottom padding */
+    gap: 18px;              /* Space between cards */
+    /* Adjust the width of the container to fit all cards */
+    min-width: unset;        /* Remove minimum width */
+    max-width: unset;        /* Remove maximum width */
+    flex-wrap: nowrap;       /* Prevent wrapping */
+    /* Ensure the container can scroll if needed */ 
+    
   }
   .milestone {
-    width: 98%;             /* Make each card almost as wide as the screen */
+    width: 100%;             /* Make each card almost as wide as the screen */
     min-width: unset;       /* Remove minimum width */
     max-width: unset;       /* Remove maximum width */
     margin: 18px auto;      /* Space between cards vertically and center them */
