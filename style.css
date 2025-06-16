@@ -48,21 +48,31 @@ body {
   position: relative; /* Needed for arrow positioning */
 }
 
-/* Timeline container: horizontal scroll on large screens */
+/* Center the timeline container and show only 4 milestone cards at a time */
 .timeline-container {
-  display: flex;            /* Arrange cards in a row */
-  overflow-x: auto;         /* Enable horizontal scrolling */
-  gap: 20px;                /* Space between cards */
-  padding-bottom: 16px;     /* Space below cards */
-  scroll-behavior: smooth;  /* Smooth scrolling effect */
+  display: flex;                /* Arrange cards in a row */
+  justify-content: flex-start;  /* Start cards from the left */
+  overflow-x: auto;             /* Allow horizontal scrolling */
+  width: 100%;                  /* Take full width of parent */
+  max-width: 1040px;            /* Limit the visible area to about 4 cards (4 x 250px + gaps) */
+  margin: 0 auto;               /* Center the container on the page */
+  padding-bottom: 16px;         /* Space below cards */
+  scroll-behavior: smooth;      /* Smooth scrolling */
+  gap: 20px;                    /* Space between cards */
+}
+
+/* Make the inner container wide enough to fit all cards side by side */
+.timeline-container {
+  /* The min-width ensures all cards fit horizontally and can be scrolled 4 at a time */
+  min-width: calc(250px * 4 + 20px * 3); /* 4 cards + 3 gaps */
 }
 
 /* Each milestone card */
 .milestone {
-  min-width: 220px;         /* Minimum width for each card */
-  max-width: 250px;         /* Maximum width for each card */
-  flex: 0 0 auto;           /* Prevent cards from stretching or shrinking */
-  margin: 0;                /* Remove default margin */
+  min-width: 250px;             /* Fixed width for each card */
+  max-width: 250px;
+  flex: 0 0 auto;               /* Prevent cards from stretching or shrinking */
+  margin: 0;                    /* Remove default margin */
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 113, 197, 0.08);
@@ -174,21 +184,24 @@ body {
   right: 18px;
 }
 
-/* On small screens, use flexbox to stack milestone cards vertically and make them wider */
+/* On small screens, stack milestone cards vertically and make them wider */
 @media (max-width: 700px) {
   .timeline-container {
-    display: flex;           /* Use flexbox for layout */
-    flex-direction: column;  /* Stack cards in a column */
-    align-items: center;     /* Center cards horizontally */
-    overflow-x: visible;     /* No horizontal scroll */
-    gap: 0;                  /* No gap needed for vertical layout */
+    display: block;         /* Stack cards vertically */
+    overflow-x: visible;    /* No horizontal scroll */
+    gap: 0;                 /* Remove gap between cards */
+    max-width: 100%;        /* Full width on small screens */
+    min-width: unset;       /* Remove min-width on small screens */
   }
   .milestone {
-    width: 98%;              /* Make each card almost as wide as the screen */
-    min-width: unset;        /* Remove minimum width */
-    max-width: unset;        /* Remove maximum width */
-    margin: 18px 0;          /* Space between cards vertically */
-    display: block;          /* Make sure cards are block elements */
+    width: 98%;             /* Make each card almost as wide as the screen */
+    min-width: unset;       /* Remove minimum width */
+    max-width: unset;       /* Remove maximum width */
+    margin: 18px auto;      /* Space between cards vertically and center them */
+    display: block;         /* Make sure cards are block elements */
+  }
+  .arrow-btn {
+    display: none;          /* Hide arrows on small screens */
   }
 }
 
